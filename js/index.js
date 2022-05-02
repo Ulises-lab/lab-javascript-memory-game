@@ -41,11 +41,38 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      card.className = 'card turned'
+      array = memoryGame.pickedCards;
+      array.unshift(card);
+      
+      if(array.length %2 === 0){
+        let isIt = memoryGame.checkIfPair(array[0].getAttribute('data-card-name'),array[1].getAttribute('data-card-name'))
+  
+        let pairsGuessed = document.querySelector('#pairs-clicked')
+        pairsGuessed.innerHTML = memoryGame.pairsClicked;
+  
+        if(isIt === true){
+          let pairsGuessed = document.querySelector('#pairs-guessed')
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+  
+        }else{
+           if(card.className === 'card turned'){
+            let nombre = ()=>{array[0].className = 'card'; array[1].className='card'}
+            setTimeout(nombre,800);
+          }
+          }}
+      
+      
+
+
+
+
     });
   });
 });
